@@ -4,7 +4,7 @@ import {AttivitaCtx} from "../contextAttivita"
 
 const CancellaAttivita = (id) =>{
   console.log("cancello attivita: " + id)
-  fetch(`https://faithfuldeterminedcondition.maffidaniele.repl.co//attivita/${id}`, {
+  fetch(`https://faithfuldeterminedcondition.maffidaniele.repl.co/attivita/${id}`, {
       method: "DELETE",
       headers:{
         "Content-Type": "application/json"
@@ -39,8 +39,6 @@ const ElencoAttivita = () => {
     },
     []
   )
-
-  
   return (
     <>
       <h2>Elenco Attivita</h2>

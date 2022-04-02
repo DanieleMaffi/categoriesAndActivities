@@ -7,12 +7,23 @@ import CreaAttivitaForm from "./forms/CreaAttivitaForm"
 import {CategoryCtx} from "./contextCategoria"
 import {AttivitaCtx} from "./contextAttivita"
 
+
 function App() {
-  const [categorie,setCategorie] = useState([])
-  const [attivita,setActivities] = useState([])
-  const AggiornaCategorie = () =>fetch("https://faithfuldeterminedcondition.maffidaniele.repl.co//categorie").then(r => r.json()).then(body =>setCategorie(body))
-  const AggiornaActivities = () =>fetch("https://faithfuldeterminedcondition.maffidaniele.repl.co/attivita").then(r => r.json()).then(body =>setActivities(body))
-  
+  const [categorie, setCategorie] = useState([])
+  const [attivita, setActivities] = useState([])
+
+  const AggiornaCategorie = () =>fetch("https://faithfuldeterminedcondition.maffidaniele.repl.co/categorie")
+  .then(r => r.json())
+  .then(body =>setCategorie(body))
+
+  const AggiornaActivities = () =>fetch("https://faithfuldeterminedcondition.maffidaniele.repl.co/attivita")
+  .then(r => r.json())
+  .then(body =>setActivities(body))
+
+  const RecuperaAttivita = (id) => fetch(`https://faithfuldeterminedcondition.maffidaniele.repl.co/categorie/elenco/${id}`)
+  .then(r => r.json())
+  .then(body =>setActivities(body))
+
   return (
     <main>
       <CategoryCtx.Provider value={{
@@ -23,7 +34,8 @@ function App() {
           <AttivitaCtx.Provider value={{
             attivita,
             setActivities,
-            AggiornaActivities
+            AggiornaActivities,
+            RecuperaAttivita
           }}>
           <div className='form-container'>
             <div><CreaCategoriaForm/></div>
